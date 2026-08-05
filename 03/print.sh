@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo -e "${name_back}${name_font}HOSTNAME${RESET} = ${value_back}${value_font}${hostname}${RESET}"
+echo -e "${name_back}${name_font}TIMEZONE${RESET} = ${value_back}${value_font}${timezone}${RESET}"
+echo -e "${name_back}${name_font}USER${RESET} = ${value_back}${value_font}${user}${RESET}"
+echo -e "${name_back}${name_font}OS${RESET} = ${value_back}${value_font}${os}${RESET}"
+echo -e "${name_back}${name_font}DATE${RESET} = ${value_back}${value_font}${date}${RESET}"
+echo -e "${name_back}${name_font}UPTIME${RESET} = ${value_back}${value_font}${uptime}${RESET}"
+echo -e "${name_back}${name_font}UPTIME_SEC${RESET} = ${value_back}${value_font}${uptime_sec}${RESET}"
+echo -e "${name_back}${name_font}IP${RESET} = ${value_back}${value_font}${ip}${RESET}"
+echo -e "${name_back}${name_font}MASK${RESET} = ${value_back}${value_font}${mask}${RESET}"
+echo -e "${name_back}${name_font}GATEWAY${RESET} = ${value_back}${value_font}${gateway}${RESET}"
+echo -e "${name_back}${name_font}RAM_TOTAL${RESET} = ${value_back}${value_font}${ram_total}${RESET}"
+echo -e "${name_back}${name_font}RAM_FREE${RESET} = ${value_back}${value_font}${ram_free}${RESET}"
+echo -e "${name_back}${name_font}SPACE_ROOT${RESET} = ${value_back}${value_font}${space_root}${RESET}"
+echo -e "${name_back}${name_font}SPACE_ROOT_USED${RESET} = ${value_back}${value_font}${space_root_used}${RESET}"
+echo -e "${name_back}${name_font}SPACE_ROOT_FREE${RESET} = ${value_back}${value_font}${space_root_free}${RESET}"
