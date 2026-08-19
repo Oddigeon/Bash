@@ -12,7 +12,10 @@ check_disk_space() {
 		echo "Attention. There is less than 1Gb of free space on '/'." >&2
 		exit 1
 	fi
+}
 
+detailed_check_disk_space() {
+	check_disk_space
 	echo "Disk check is over."
 	print_separators
 }

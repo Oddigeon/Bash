@@ -7,8 +7,6 @@
 #file_chars=$5
 #size_file=$6
 
-#source ./generate_name.sh
-
 check_input() {
 
 	if [[ $# -ne 6 ]]; then
@@ -56,6 +54,13 @@ check_input() {
 
 	if [[ ! $size_file =~ ^([0-9]+)kb$ ]]; then
 		echo "Error parameter 6. Enter the file size in the format: {number}kb (max 100kb)" >&2
+		print_separators
+		exit 1
+	fi
+
+	local size_value=${size_file%kb}
+	if [[ $size_value -gt 100 ]]; then
+		echo "Error parameter 6. Max file size is 100kb." >&2
 		print_separators
 		exit 1
 	fi

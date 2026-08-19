@@ -2,10 +2,12 @@
 
 set -euo pipefail 
 
-source "./check_input.sh"
-source "./check_disk.sh"
-source "./generate_name.sh"
-source "./separators.sh"
+script_dir="$(cd "$(dirname $0)" && pwd)"
+
+source "${script_dir}/check_input.sh"
+source "${script_dir}/check_disk.sh"
+source "${script_dir}/generate_name.sh"
+source "${script_dir}/separators.sh"
 
 print_separators
 
@@ -21,7 +23,7 @@ filename="${file_chars%.*}"
 ext="${file_chars#*.}"
 size="${size_file%kb}"
 
-check_disk_space
+detailed_check_disk_space
 
 mkdir -p "$base_path"
 
