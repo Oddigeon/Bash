@@ -7,6 +7,7 @@ script_dir="$(cd "$(dirname $0)" && pwd)"
 source "${script_dir}/check_input.sh"
 source "${script_dir}/check_disk.sh"
 source "${script_dir}/generate_name.sh"
+source "${script_dir}/create_structure.sh"
 source "${script_dir}/separators.sh"
 
 print_separators
@@ -27,13 +28,13 @@ detailed_check_disk_space
 
 mkdir -p "$base_path"
 
-# log file
+log_path="${base_path}/file.log"
+init_log "$log_path"
 
-# create structures: dirs, files etc.
-
-generate_name
+create_structure "$base_path" "$dir_count" "$dir_chars" "$file_count" "$filename" "$ext" "$size" "$log_path"
 
 print_separators
 
 echo "Done."
-
+echo "Structure created in $base_path"
+echo "Log file: $log_path"

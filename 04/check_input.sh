@@ -59,7 +59,7 @@ check_input() {
 	fi
 
 	local size_value=${size_file%kb}
-	if [[ $size_value -gt 100 ]]; then
+	if [[ $size_value -gt 100 ]] || [[ $size_value -lt 1 ]]; then
 		echo "Error parameter 6. Max file size is 100kb." >&2
 		print_separators
 		exit 1
