@@ -14,3 +14,13 @@ check_disk_space() {
 	fi
 }
 
+detailed_check_disk_space() {
+	print_separators
+	echo "Disk usage on '/':"
+	df -h / 
+	check_disk_space
+	print_separators
+	echo "Disk check is over."
+	print_separators
+}
+

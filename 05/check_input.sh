@@ -10,7 +10,7 @@ check_input() {
 	#local dir_chars=$1
 	#local file_chars=$2
 	#local file_size=$3
-	#local size_value=${file_size%kb}
+	#local size_value=${file_size%[Mm][Bb]}
 
 	if [[ ! $dir_chars =~ ^[a-zA-Z]{1,7}$ ]]; then
 		echo "Error parameter 1. Enter the letter."
@@ -24,16 +24,24 @@ check_input() {
 		exit 1
 	fi
 
-	if [[ ! $file_size =~ ^([0-9]+)kb$ ]]; then
-		echo "Error parameter 3. Enter the file size in the format: (number)kb (max 100kb)"
+	if [[ ! $file_size =~ ^([0-9]+)[Mm][Bb]$ ]]; then
+		echo "Error parameter 3. Enter the file size in the format: (number)Mb (max 100Mb)"
 		print_separators
 		exit 1
 	fi
 
 	if [[ $size_value -gt 100 ]] || [[ $size_value -lt 1 ]]; then
-		echo "Error parameter 3. Enter a value from 1 to 100 kb"
+		echo "Error parameter 3. Enter a value from 1 to 100 Mb"
 		print_separators
 		exit 1
 	fi
 }
 
+
+check_forbidden_path() {
+	if [[ $current_dir =~ (^|/)s?bin(/|$) ]]; then
+		echo "Error. Cannot create dirs and files in structure with 'bin' or 'sbin'." >&2
+		print_separators
+		exit 1
+	fi
+}

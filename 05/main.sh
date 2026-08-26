@@ -6,7 +6,7 @@ file_chars=$2
 file_size=$3
 filename=${file_chars%.*}
 ext=${file_chars#*.}
-size_value=${file_size%kb}
+size_value=${file_size%[Mm][Bb]}
 
 source "$current_dir/check_input.sh"
 source "$current_dir/separators.sh"
@@ -14,7 +14,8 @@ source "$current_dir/check_disk.sh"
 
 print_separators
 check_input "$@"
-check_disk_space
+check_forbidden_path
+detailed_check_disk_space
 
 #log_path="$current_dir/file.log"
 #init_log 

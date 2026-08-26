@@ -15,7 +15,7 @@ generate_name() {
 	while true; do
 		result=""
 		for (( i=0; i<length; i++ )); do
-			result+="${charset:((RANDOM % n)):1}"
+			result+="${charset:$((RANDOM % n)):1}"
 		done
 		if [[ $result =~ $pattern ]]; then
 			break
@@ -30,11 +30,11 @@ generate_dated_name() {
 	local min_length=$2
 	local n=${#charset}
 
-	local base_len=$((if n > min_length ? n: min_length ))
+	local base_len=$(( n > min_length ? n: min_length ))
 	local extra=$(( RANDOM % 4 ))
 	local final_len=$(( base_len + extra )) 
 	local name_part=$(generate_name "$charset" "$final_len")
-	local date_name=$(date +%d%m%Y)
+	local date_name=$(date +%d%m%y)
 
 	echo "${name_part}_${date_name}"
 }
