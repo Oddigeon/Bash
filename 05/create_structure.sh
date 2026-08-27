@@ -1,8 +1,26 @@
 #!/bin/bash
 
-#init_log()
+init_log() {
+	{
+		echo "=== Log of file/dir generation ==="
+		echo "Start time: $start_time"
+		print_separators
+	} > "$log_path"
+}
 
-#log_entry()
+log_entry() {
+	local log_path=$1
+	local full_path=$2
+	local size=$3
+	local created
+	created=$(date '+%d-%m-%Y %H:%M:%S')
+
+	if [[ $size == "-" ]]; then
+		echo "[DIR ] $full_path | created: $created" >> "$log_path"
+	else
+		echo "[FILE] $full_path | created: $created | size: %size bytes" >> "$log_path"
+	fi
+}
 
 create_structure() {
 	local dir_count=$(( (RANDOM % 100) + 1 ))
@@ -14,7 +32,7 @@ create_structure() {
 		check_dick_space
 		local dir_name
 		dir_name=$(generate_dated_name "$dir_chars" 5)
-		current_path="${current_path}/S{dir_name}"
+		current_path="${current_path}/${dir_name}"
 
 		mkdir -p $current_path
 		#log_entry
