@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 current_dir=$(pwd)
 dir_chars=$1
 file_chars=$2
@@ -10,37 +12,39 @@ size_value=${file_size%[Mm][Bb]}
 
 start_time=$(date '+%d-%m-%Y %H:%M:%S')
 start_ts=$(date +%s)
-
-source "$current_dir/check_input.sh"
-source "$current_dir/separators.sh"
-source "$current_dir/check_disk.sh"
-source "$current_dir/create_structure.sh"
-
-print_separators
-check_input "$@"
-check_forbidden_path
-detailed_check_disk_space
-
 log_path="${current_dir}/file.log"
-init_log 
 
-#create_structure "$dir_chars" "$filename" "$ext" "$size_value"
-create_structure
+source "./check_input.sh"
+source "./separators.sh"
+source "./check_disk.sh"
+source "./generate_name.sh"
+source "./create_structure.sh"
 
-end_time=$(date '+%d-%m-%Y %H:%M:%S')
-end_ts=$(date +%s)
-elapsed=$(( $start_ts - $end_ts ))
+finish() {
+	local end_time end_ts elapsed
+	end_time=$(date '+%d-%m-%Y %H:%M:%S')
+	end_ts=$(date +%s)
+	elapsed=$(( end_ts - start_ts ))
 
-print_separators
-
-echo "Done"
-echo "Start time: $start_time"
-echo "End time: $end_time"
-echo "Total time: $elapsed sec"
-
-{
 	print_separators
+	echo "Done"
 	echo "Start time: $start_time"
 	echo "End time: $end_time"
 	echo "Total time: $elapsed sec"
-} >> "$log_path"
+
+	{
+		print_separators
+		echo "Start time: $start_time"
+		echo "End time: $end_time"
+		echo "Total time: $elapsed sec"
+	} >> "$log_path"
+}
+trap finish EXIT
+
+print_separators
+check_input "$@"
+check_forbidden_path "$current_dir"
+detailed_check_disk_space
+
+init_log
+create_structure

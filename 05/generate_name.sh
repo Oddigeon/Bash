@@ -30,11 +30,13 @@ generate_dated_name() {
 	local min_length=$2
 	local n=${#charset}
 
-	local base_len=$(( n > min_length ? n: min_length ))
+	local base_len=$(( n > min_length ? n : min_length ))
 	local extra=$(( RANDOM % 4 ))
-	local final_len=$(( base_len + extra )) 
-	local name_part=$(generate_name "$charset" "$final_len")
-	local date_name=$(date +%d%m%y)
+	local final_len=$(( base_len + extra ))
+	local name_part
+	name_part=$(generate_name "$charset" "$final_len")
+	local date_name
+	date_name=$(date +%d%m%y)
 
 	echo "${name_part}_${date_name}"
 }
