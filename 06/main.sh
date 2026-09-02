@@ -8,17 +8,24 @@ source "./date_2.sh"
 source "./mask_3.sh"
 source "./separators.sh"
 
+SEARCH_DIRS=("$HOME" "/tmp" "/var/tmp" "$(pwd)")
+NAME_PATTERN='[A-Za-z]+_[0-9]{6}(\.[A-Za-z]{1,3})?'
+
 print_separators
 check_input "$@"
 
-if [[ $1 -eq 1 ]]; then
-	echo "good 1"
-fi
+case "$1" in
+	1)
+		input_log_path
+		clean_by_log "$log_path"
+		;;
+	2)
+		input_create_date
+		clean_by_date "$start_date" "$end_date"
+		;;
+	3)
+		input_mask
+		clean_by_mask "$mask"
+		;;
+esac
 
-if [ $1 -eq 2 ]; then
-	echo "good 2"
-fi
-
-if [ $1 -eq 3 ]; then
-	echo "good 3"
-fi
