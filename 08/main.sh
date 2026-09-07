@@ -5,8 +5,14 @@ set -euo pipefail
 source "./check_input.sh"
 source "./separators.sh"
 source "./value_1.sh"
+source "./value_2.sh"
+source "./value_3.sh"
+source "./value_4.sh"
 
 print_separators
 check_input "$@"
 
 check_value "$@"
+
+echo "Готово"
+print_separators

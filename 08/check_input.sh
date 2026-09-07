@@ -19,15 +19,15 @@ check_value() {
 		value_1
 	fi
 
-#	if [[ $1 -eq 2 ]]; then
-		#value_2
-#	fi
+	if [[ $1 -eq 2 ]]; then
+		value_2
+	fi
 
-#	if [[ $1 -eq 3 ]]; then
-		#value_3
-#	fi
+	if [[ $1 -eq 3 ]]; then
+		value_3
+	fi
 
-#	if [[ $1 -eq 4 ]]; then
-		#value_4
-#	fi
+	if [[ $1 -eq 4 ]]; then
+		value_4
+	fi
 }
